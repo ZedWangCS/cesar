@@ -4,7 +4,7 @@
 
 This project implements a minimal end-to-end MLOps pipeline.
 
-It takes simple input data, applies a model, and exposes predictions through an API.
+It demonstrates how a machine learning model can be transformed into a usable service via an API.
 
 Pipeline:
 
@@ -12,14 +12,28 @@ Input → Model → API → Prediction
 
 ---
 
+## Business Context
+
+We consider a startup building tools for people who want to buy real estate.
+
+This system focuses on one core feature:
+→ property value estimation
+
+In a real product, this would be part of a larger system including:
+- property search
+- anomaly detection (unusual prices)
+- decision support tools
+
+---
+
 ## Goal
 
-Estimate property price using basic features:
+Estimate property price using simple features:
 
 - surface (square meters)
 - number of rooms
 
-The focus is on system design, not model accuracy.
+The goal is not model accuracy, but system design and usability.
 
 ---
 
@@ -29,6 +43,7 @@ The focus is on system design, not model accuracy.
 - FastAPI service
 - REST API endpoints
 - Health check endpoint
+- Model information endpoint
 
 ---
 
@@ -39,6 +54,9 @@ POST /predict
 
 GET /health  
 → Returns service status
+
+GET /model_info  
+→ Returns model metadata
 
 ---
 
@@ -88,17 +106,44 @@ Response:
 
 ---
 
-## MLOps Concepts
+## MLOps Perspective
 
-This project demonstrates:
+This project focuses on key MLOps principles:
 
-- Simple deployable ML system
-- API-based model serving
+- Simplicity first (minimal working system)
+- Model deployment via API
 - Clear input/output contract
-- Reproducible setup
+- Reproducibility
+- System thinking (model as a service)
+
+---
+
+## System Considerations
+
+In real-world systems, additional aspects should be considered:
+
+- Latency and throughput
+- Scalability
+- Failure handling (server or network issues)
+- Monitoring and logging
+- Cost efficiency
+
+---
+
+## Future Improvements
+
+This system can be extended with:
+
+- anomaly detection for unusual prices
+- search functionalities
+- UI integration
+- containerization (Docker/Kubernetes)
+- automated deployment (CI/CD)
 
 ---
 
 ## Notes
 
 This is a minimal educational implementation.
+
+The goal is to demonstrate how a machine learning model can be integrated into a usable and extensible system.
