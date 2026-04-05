@@ -21,3 +21,10 @@ def predict(data: InputData):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+@app.get("/model_info")
+def model_info():
+    return {
+        "model_name": "simple_price_model",
+        "version": "1.0",
+        "inputs": ["surface", "rooms"]
+    }
