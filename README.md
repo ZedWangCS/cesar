@@ -1,149 +1,121 @@
-# CESAR – Minimal MLOps Property Valuation System
+# CESAR – Property Price Estimation API
 
-## Overview
+## What is this?
 
-This project implements a minimal end-to-end MLOps pipeline.
+CESAR is a minimal service that estimates the price of a property based on a few basic inputs (surface and number of rooms).
 
-It demonstrates how a machine learning model can be transformed into a usable service via an API.
+It is designed as a building block for a real estate platform where users need quick price estimations before making decisions.
 
-Pipeline:
-
-Input → Model → API → Prediction
-
----
-
-## Business Context
-
-We consider a startup building tools for people who want to buy real estate.
-
-This system focuses on one core feature:
-→ property value estimation
-
-In a real product, this would be part of a larger system including:
-- property search
-- anomaly detection (unusual prices)
-- decision support tools
+Typical users:
+- individuals evaluating a potential purchase
+- platforms providing decision support tools
 
 ---
 
-## Goal
+## Why is this useful?
 
-Estimate property price using simple features:
+Property valuation is a key step in real estate decisions.
 
-- surface (square meters)
+Even a simple estimation tool can:
+- give users a first price reference
+- support filtering and comparison
+- be integrated into larger workflows (search, audit, anomaly detection)
+
+This project demonstrates how such a tool can be delivered as a reliable API.
+
+---
+
+## What does the system do?
+
+The system exposes a simple model through a FastAPI service.
+
+Input:
+- surface
 - number of rooms
 
-The goal is not model accuracy, but system design and usability.
+Output:
+- estimated price
+
+Endpoints:
+- POST /predict → returns a price estimate
+- GET /health → service status
+- GET /model_info → model metadata
 
 ---
 
-## Features
+## Approach
 
-- Simple prediction model
-- FastAPI service
-- REST API endpoints
-- Health check endpoint
-- Model information endpoint
+We intentionally keep the model simple and focus on:
 
----
+- turning a model into a usable service
+- defining a clear API contract
+- ensuring the system can be extended
 
-## API Endpoints
-
-POST /predict  
-→ Returns estimated price
-
-GET /health  
-→ Returns service status
-
-GET /model_info  
-→ Returns model metadata
+The system is designed so that the model can be replaced without changing the API.
 
 ---
 
-## Project Structure
+## Limitations
 
-cesar/
-  app/
-    main.py
-  model/
-    predict.py
-  data/
-  README.md
-  requirements.txt
+This is not a production-grade valuation system.
 
----
-
-## How to Run
-
-Install dependencies:
-
-python3 -m pip install -r requirements.txt
-
-Start the API:
-
-python3 -m uvicorn app.main:app --reload
-
-Open in browser:
-
-http://127.0.0.1:8000/docs
+Current limitations:
+- no real data or training process
+- no evaluation of model accuracy
+- no anomaly detection
+- no monitoring or logging
+- no scaling strategy
 
 ---
 
-## Example
+## What would be needed for production?
 
-Request:
+To move toward a real product, we would need:
 
-{
-  "surface": 50,
-  "rooms": 3
-}
-
-Response:
-
-{
-  "estimated_price": 180000
-}
+- a trained model based on real datasets
+- performance evaluation and validation
+- monitoring (latency, errors)
+- deployment infrastructure (containers, cloud)
+- failure handling and retry mechanisms
+- cost management
 
 ---
 
-## MLOps Perspective
+## Team reliability and risks
 
-This project focuses on key MLOps principles:
+The current implementation shows that we can:
 
-- Simplicity first (minimal working system)
-- Model deployment via API
-- Clear input/output contract
-- Reproducibility
-- System thinking (model as a service)
+- build a functional ML service
+- expose it via API
+- structure a simple system
 
----
+However, we would need support for:
 
-## System Considerations
-
-In real-world systems, additional aspects should be considered:
-
-- Latency and throughput
-- Scalability
-- Failure handling (server or network issues)
-- Monitoring and logging
-- Cost efficiency
+- data engineering
+- model validation
+- production deployment
 
 ---
 
-## Future Improvements
+## Maintainer considerations
 
-This system can be extended with:
+If this system were in production, updating the model would require:
 
-- anomaly detection for unusual prices
-- search functionalities
-- UI integration
-- containerization (Docker/Kubernetes)
-- automated deployment (CI/CD)
+- keeping API compatibility (do not break input/output format)
+- versioning the model
+- testing before deployment
+- monitoring after release
+
+A safe release process would include:
+- validation on test data
+- rollback strategy in case of failure
 
 ---
 
-## Notes
+## Conclusion
 
-This is a minimal educational implementation.
+This project demonstrates a minimal but complete ML system:
 
-The goal is to demonstrate how a machine learning model can be integrated into a usable and extensible system.
+Model → API → Usable service
+
+The focus is not on model performance, but on delivering a usable and extensible component in a larger system.
