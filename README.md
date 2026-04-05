@@ -2,12 +2,12 @@
 
 ## What is this?
 
-CESAR is a minimal service that estimates the price of a property based on a few basic inputs (surface and number of rooms).
+CESAR is a minimal service that estimates the price of a property based on a few basic inputs (surface and number of rooms, and departments).
 
 It is designed as a building block for a real estate platform where users need quick price estimations before making decisions.
 
 Typical users:
-- individuals evaluating a potential purchase
+- individuals evaluating a potential purchase, especially for those who has little knowledge about the property price in France(foreign students, immigrants) 
 - platforms providing decision support tools
 
 ---
@@ -28,10 +28,14 @@ This project demonstrates how such a tool can be delivered as a reliable API.
 ## What does the system do?
 
 The system exposes a simple model through a FastAPI service.
+Data we used:
+- Demande de Valeurs Foncières（dvf） from https://explore.data.gouv.fr/
+
 
 Input:
 - surface
 - number of rooms
+- department
 
 Output:
 - estimated price
@@ -60,7 +64,8 @@ The system is designed so that the model can be replaced without changing the AP
 This is not a production-grade valuation system.
 
 Current limitations:
-- no real data or training process
+- currently we only support the prediction for ile-de-frances
+- the model is simple and not fine-tuned
 - no evaluation of model accuracy
 - no anomaly detection
 - no monitoring or logging
@@ -72,7 +77,6 @@ Current limitations:
 
 To move toward a real product, we would need:
 
-- a trained model based on real datasets
 - performance evaluation and validation
 - monitoring (latency, errors)
 - deployment infrastructure (containers, cloud)
