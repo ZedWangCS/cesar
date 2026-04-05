@@ -9,7 +9,7 @@ def train():
     df = clean_data(df)
     print(f"Training on {len(df)} rows")
 
-    X = df[["surface_reelle_bati", "nombre_pieces_principales"]]
+    X = df[["surface_reelle_bati", "nombre_pieces_principales","code_departement"]]
     y = df["valeur_fonciere"]
 
     # using random forest for regression

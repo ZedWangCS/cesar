@@ -7,6 +7,7 @@ app = FastAPI()
 class InputData(BaseModel):
     surface: float
     rooms: int
+    department: int
 
 @app.get("/")
 def read_root():
@@ -14,7 +15,7 @@ def read_root():
 
 @app.post("/predict")
 def predict(data: InputData):
-    price = predict_price(data.surface, data.rooms)
+    price = predict_price(data.surface, data.rooms, data.department)
     return {
         "estimated_price": price
     }
@@ -24,7 +25,7 @@ def health():
 @app.get("/model_info")
 def model_info():
     return {
-        "model_name": "simple_price_model",
+        "model_name": "random_forest_model",
         "version": "1.0",
-        "inputs": ["surface", "rooms"]
+        "inputs": ["surface", "rooms", "department"]
     }
