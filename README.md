@@ -1,38 +1,44 @@
 # CESAR – Minimal MLOps Property Valuation System
 
-## TL;DR
+## Overview
 
-This project demonstrates a minimal end-to-end MLOps pipeline:
+This project implements a minimal end-to-end MLOps pipeline.
+
+It takes simple input data, applies a model, and exposes predictions through an API.
+
+Pipeline:
 
 Input → Model → API → Prediction
-
-A simple model is exposed through a FastAPI service and can be queried via HTTP.
 
 ---
 
 ## Goal
 
-Estimate the value of a property using basic features:
+Estimate property price using basic features:
 
-- surface (in square meters)
+- surface (square meters)
 - number of rooms
 
-This project focuses on system design rather than model performance.
+The focus is on system design, not model accuracy.
 
 ---
 
-## System Overview
+## Features
 
-The system includes:
+- Simple prediction model
+- FastAPI service
+- REST API endpoints
+- Health check endpoint
 
-- A simple prediction model (predict_price)
-- A FastAPI application exposing the model
-- A REST API interface for inference
+---
 
-Endpoints:
+## API Endpoints
 
-- POST /predict → return estimated price
-- GET /health → check if the service is running
+POST /predict  
+→ Returns estimated price
+
+GET /health  
+→ Returns service status
 
 ---
 
@@ -40,10 +46,10 @@ Endpoints:
 
 cesar/
   app/
-    main.py        # FastAPI application
+    main.py
   model/
-    predict.py     # Model logic
-  data/            # Optional data folder
+    predict.py
+  data/
   README.md
   requirements.txt
 
@@ -51,110 +57,15 @@ cesar/
 
 ## How to Run
 
-1. Install dependencies
+Install dependencies:
 
 python3 -m pip install -r requirements.txt
 
-2. Start the API
+Start the API:
 
 python3 -m uvicorn app.main:app --reload
 
-The API will be available at:
-
-http://127.0.0.1:8000
-
-3. Test the API
-
-Open:
-
-http://127.0.0.1:8000/docs
-
----
-
-## Example
-
-Request:
-
-{
-  "surface": 50,
-  "rooms": 3
-}
-
-Response:
-
-{
-  "estimated_price": 180000
-}
-
----
-# CESAR – Minimal MLOps Property Valuation System
-
-## TL;DR
-
-This project demonstrates a minimal end-to-end MLOps pipeline:
-
-Input → Model → API → Prediction
-
-A simple model is exposed through a FastAPI service and can be queried via HTTP.
-
----
-
-## Goal
-
-Estimate the value of a property using basic features:
-
-- surface (in square meters)
-- number of rooms
-
-This project focuses on system design rather than model performance.
-
----
-
-## System Overview
-
-The system includes:
-
-- A simple prediction model (predict_price)
-- A FastAPI application exposing the model
-- A REST API interface for inference
-
-Endpoints:
-
-- POST /predict → return estimated price
-- GET /health → check if the service is running
-
----
-
-## Project Structure
-
-cesar/
-  app/
-    main.py        # FastAPI application
-  model/
-    predict.py     # Model logic
-  data/            # Optional data folder
-  README.md
-  requirements.txt
-
----
-
-## How to Run
-
-1. Install dependencies
-
-python3 -m pip install -r requirements.txt
-
-2. Start the API
-
-python3 -m uvicorn app.main:app --reload
-
-The API will be available at:
-
-http://127.0.0.1:8000
-
-3. Test the API
-
-Open:
+Open in browser:
 
 http://127.0.0.1:8000/docs
 
@@ -177,17 +88,17 @@ Response:
 
 ---
 
-## Key MLOps Concepts Demonstrated
+## MLOps Concepts
 
-- Simplicity first (minimal working system)
-- Model deployment via API
-- Reproducibility
-- Clear API contract
+This project demonstrates:
+
+- Simple deployable ML system
+- API-based model serving
+- Clear input/output contract
+- Reproducible setup
 
 ---
 
 ## Notes
 
-This is a minimal implementation for educational purposes.
-
-The goal is to demonstrate how a machine learning model can be turned into a usable system.
+This is a minimal educational implementation.
