@@ -77,8 +77,6 @@ We intentionally keep the model simple and focus on:
 
 ### Prerequisites
 - Python 3.12+
-- DVF data for Île-de-France departments (75, 77, 78, 91, 92, 93, 94, 95) placed in `data/`
-- Available at: https://explore.data.gouv.fr/fr/immobilier
 
 ### Install dependencies
 ```bash
