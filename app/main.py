@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from model.predict import predict_price
+from model.safety import get_safety_level
 
 app = FastAPI()
 
@@ -16,9 +17,11 @@ def read_root():
 @app.post("/predict")
 def predict(data: InputData):
     price = predict_price(data.surface, data.rooms, data.department)
+    safety = get_safety_level(data.department)
     return {
-        "estimated_price": price
-    }
+        "estimated_price": price,
+        "safety_level": safety
+        }
 @app.get("/health")
 def health():
     return {"status": "ok"}
