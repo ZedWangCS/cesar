@@ -2,9 +2,9 @@
 
 ## What is this?
 
-CESAR is a minimal service that estimates the price of a property based on a few basic inputs (surface and number of rooms, and departments).
+CESAR is a minimal service that estimates the price of a property based on a few basic inputs (surface and number of rooms, and departments). Apart from the price estimation, it will also return the suggestion for the property e.g.the safety level of the region. 
 
-It is designed as a building block for a real estate platform where users need quick price estimations before making decisions.
+It is designed as a building block for a real estate platform where users need quick price estimations before making decisions. Moreover, it will prevent users falling into price trap e.g. only care about the low price and ignore the low safety level.
 
 Typical users:
 - individuals evaluating a potential purchase, especially for those who has little knowledge about the property price in France(foreign students, immigrants) 
@@ -39,9 +39,10 @@ Input:
 
 Output:
 - estimated price
+- safety level
 
 Endpoints:
-- POST /predict → returns a price estimate
+- POST /predict → returns a price estimate and safety level
 - GET /health → service status
 - GET /model_info → model metadata
 
