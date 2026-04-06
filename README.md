@@ -1,14 +1,24 @@
-# CESAR – Property Price Estimation API
+# CESAR – Accomodation Assistant API
 
-## What is this?
+## Intro
+Remember the exitement of moving to a new city? But before that we've all been through a hard time looking for the "right" accomoadation. Scrolling through endless listings on different websites, looking for an accomodation with affordable and reasonable prices, wondering if the community is acually safe as advertised. All these small problems with accomodation are difficult to figure out for a new comer but any of these could entirely ruins the start of a new life.
 
-CESAR is a minimal service that estimates the price of a property based on a few basic inputs (surface and number of rooms, and departments). Apart from the price estimation, it will also return the suggestion for the property e.g.the safety level of the region. 
+That's where CESAR comes in. We provides you the fair price and mind you the pitfalls that you might encounter when looking for an accomodation in a new city.
 
-It is designed as a building block for a real estate platform where users need quick price estimations before making decisions. Moreover, it will prevent users falling into price trap e.g. only care about the low price and ignore the low safety level.
+## What is CESAR?
+
+
+CESAR is an Accomodation Assistant which gives an estimate of the price based on the input of the features of the propety(Surfaces, Number of Rooms, Address). Moreover it would suggest you the things that you might ignore.
+
+It is designed as a building block for a real estate platform where users need quick price estimations before making decisions. 
 
 Typical users:
-- individuals evaluating a potential purchase, especially for those who has little knowledge about the property price in France(foreign students, immigrants) 
-- platforms providing decision support tools
+
+- new comers to the city who are looking for an accomodation but have no clues about it (foreign students, new employees,new immigrants etc)
+
+- individuals who are considering about changing their current accomodations but not familiar with the property market
+
+- platforms providing decision support tools (suggest suitable listing prices for the property owner)
 
 ---
 
@@ -17,8 +27,9 @@ Typical users:
 Property valuation is a key step in real estate decisions.
 
 Even a simple estimation tool can:
-- give users a first price reference
+- give users a data-based price reference
 - support filtering and comparison
+- suggest the details that users might ignore
 - be integrated into larger workflows (search, audit, anomaly detection)
 
 This project demonstrates how such a tool can be delivered as a reliable API.
@@ -28,6 +39,7 @@ This project demonstrates how such a tool can be delivered as a reliable API.
 ## What does the system do?
 
 The system exposes a simple model through a FastAPI service.
+
 Data we used:
 - Demande de Valeurs Foncières（dvf） from https://explore.data.gouv.fr/
 
@@ -65,12 +77,15 @@ The system is designed so that the model can be replaced without changing the AP
 This is not a production-grade valuation system.
 
 Current limitations:
-- currently we only support the prediction for ile-de-frances
-- the model is simple and not fine-tuned
+- we only support the purchase of a real estate, rental is not supported
+- currently we only support the prediction for ile-de-france
+- the price predict models are simple and not fine-tuned
 - no evaluation of model accuracy
 - no anomaly detection
 - no monitoring or logging
 - no scaling strategy
+- the address is only precise to department 
+- the safety level prediction are not data-based
 
 ---
 
@@ -78,6 +93,9 @@ Current limitations:
 
 To move toward a real product, we would need:
 
+- extend the support area to whole France
+- add predict functions for rental 
+- add other suggestions apart from the safety level
 - performance evaluation and validation
 - monitoring (latency, errors)
 - deployment infrastructure (containers, cloud)
