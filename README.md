@@ -26,7 +26,9 @@ Typical users:
 
 Property valuation is a key step in real estate decisions.
 
-Even a simple estimation tool can:
+In traditional real estate process, it is hard to estimate the value. Usually we use the transaction price of a similar real estate as reference.However, usually the features would not be exactly the same to the very property we want to value.As a result, the valutaion would not be accurate as we want. Moreover, you could not find out the safety information of the community in the listing or Google Map. 
+
+To solve these problem, we build CESAR, which can:
 - give users a data-based price reference
 - support filtering and comparison
 - suggest the details that users might ignore
@@ -69,6 +71,38 @@ We intentionally keep the model simple and focus on:
 - ensuring the system can be extended
 
 The system is designed so that the model can be replaced without changing the API.
+
+---
+
+## Implementation of CESAR
+
+### Prerequisites
+- Python 3.12+
+- DVF data for Île-de-France departments (75, 77, 78, 91, 92, 93, 94, 95) placed in `data/`
+- Available at: https://explore.data.gouv.fr/fr/immobilier
+
+### Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Train the model
+```bash
+python -m model.train
+```
+
+### Start the API
+```bash
+uvicorn app.main:app --reload --port 8000
+```
+
+### Start the UI
+Open a new terminal:
+```bash
+streamlit run ui/app.py
+```
+
+The UI will be available at http://localhost:8501
 
 ---
 
