@@ -26,14 +26,16 @@ Typical users:
 
 Property valuation is a key step in real estate decisions.
 
-In traditional real estate valuing process, it needs the buyers to do a lot of research on the previous transactions prices and current listing prices of similar properties to get an objective valuation of the price. This would takes a lot of effort, and for those who are not sure which area would they like to live in, it would be impossible to have a clear understanding of every potential areas they would live. Moreover, for those who don't know about the area, it would be diffcult time consuming to find out the safety level of the community as this information is neither mentioned in listing nor reviewed on Google Map. 
+In traditional real estate valuing process, it needs the buyers to do a lot of research on the previous transactions prices and current listing prices of similar properties to get an objective valuation of the price. This would takes a lot of effort, and for those who are not sure which area would they like to live in, it would be impossible to have a clear understanding of every potential areas they would like to live.  
 
-To solve these problem, we build CESAR, which can:
+Moreover, not like information like commune time, life convenience which could be easily achieved from Google Map. Safety levels are not easy to be found by people, especially for those who are not familiar with the government data system of France.
+
+To solve these two problem, we build CESAR, which can:
 - give users a data-based price reference 
 - suggest the safety level of the community
 - be integrated into larger workflows (search, audit, anomaly detection)
 
-With the 2 main functions of CESAR, User could find the real "hidden-gem" 
+With the 2 main functions of CESAR, User could find the real "hidden-gem" which are of good price with no potential pitfalls.
 
 ---
 
@@ -127,7 +129,7 @@ To move toward a real product, we would need:
 
 - extend the support area to whole France
 - add predict functions for rental based on the rental data
-- change the safety level to data-based
+- create a safety level model based on the data from https://www.data.gouv.fr/fr/datasets/bases-statistiques-communale-et-departementale-de-la-delinquance-enregistree-par-la-police-et-la-gendarmerie-nationales/
 - add other suggestions apart from the safety level
 - performance evaluation and validation
 - monitoring (latency, errors)
