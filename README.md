@@ -1,22 +1,22 @@
-# CESAR – Accomodation Assistant API
+# CESAR – Real Estate Assistant API
 
 ## Intro
-Remember the exitement of moving to a new city? But before that we've all been through a hard time looking for the "right" accomoadation. Scrolling through endless listings on different websites, looking for an accomodation with affordable and reasonable prices, wondering if the community is acually safe as advertised. All these small problems with accomodation are difficult to figure out for a new comer but any of these could entirely ruins the start of a new life.
-
-That's where CESAR comes in. We provides you the fair price and mind you the pitfalls that you might encounter when looking for an accomodation in a new city.
+Remember the exitement of moving to a new city in France? But before that we've all been through a hard time looking for the "right" accomoadation. Have you ever found out that you are paying too much for the purchase price/rent when comparing it to your neighbors? Have you had an experience that thinking you've found a "good bargain" but realised that the community is not safe and that's why the price is so low. These two small problems are annoying and could ruins your start of life at a new city.
+ 
+That's where CESAR comes in. We provides you the fair price and mind you the pitfalls that you might encounter when looking for an accomodation in a new city in France.
 
 ## What is CESAR?
 
 
-CESAR is an Accomodation Assistant which gives an estimate of the price based on the input of the features of the propety(Surfaces, Number of Rooms, Address). Moreover it would suggest you the things that you might ignore.
+CESAR is a Real Estate Assistant which gives an estimate of the price/rent based on the input of the features of the propety(Surfaces, Number of Rooms, Address). Moreover it would suggest you the safety level of the region. 
 
 It is designed as a building block for a real estate platform where users need quick price estimations before making decisions. 
 
 Typical users:
 
-- new comers to the city who are looking for an accomodation but have no clues about it (foreign students, new employees,new immigrants etc)
+- new comers of the city who are looking for an accomodation but have completely no clues about it (foreign students, new foreign employees,new immigrants etc)
 
-- individuals who are considering about changing their current accomodations but not familiar with the property market
+- individuals who are considering about changing their current accomodations but not familiar with the real estate market
 
 - platforms providing decision support tools (suggest suitable listing prices for the property owner)
 
@@ -26,15 +26,14 @@ Typical users:
 
 Property valuation is a key step in real estate decisions.
 
-In traditional real estate process, it is hard to estimate the value. Usually we use the transaction price of a similar real estate as reference.However, usually the features would not be exactly the same to the very property we want to value.As a result, the valutaion would not be accurate as we want. Moreover, you could not find out the safety information of the community in the listing or Google Map. 
+In traditional real estate valuing process, it needs the buyers to do a lot of research on the previous transactions prices and current listing prices of similar properties to get an objective valuation of the price. This would takes a lot of effort, and for those who are not sure which area would they like to live in, it would be impossible to have a clear understanding of every potential areas they would live. Moreover, for those who don't know about the area, it would be diffcult time consuming to find out the safety level of the community as this information is neither mentioned in listing nor reviewed on Google Map. 
 
 To solve these problem, we build CESAR, which can:
-- give users a data-based price reference
-- support filtering and comparison
-- suggest the details that users might ignore
+- give users a data-based price reference 
+- suggest the safety level of the community
 - be integrated into larger workflows (search, audit, anomaly detection)
 
-This project demonstrates how such a tool can be delivered as a reliable API.
+With the 2 main functions of CESAR, User could find the real "hidden-gem" 
 
 ---
 
@@ -43,7 +42,7 @@ This project demonstrates how such a tool can be delivered as a reliable API.
 The system exposes a simple model through a FastAPI service.
 
 Data we used:
-- Demande de Valeurs Foncières（dvf） from https://explore.data.gouv.fr/
+- Demande de Valeurs Foncières （dvf）of ile-de-france from https://explore.data.gouv.fr/
 
 
 Input:
@@ -70,7 +69,7 @@ We intentionally keep the model simple and focus on:
 - defining a clear API contract
 - ensuring the system can be extended
 
-The system is designed so that the model can be replaced without changing the API.
+
 
 ---
 
@@ -102,7 +101,6 @@ Open a new terminal:
 streamlit run ui/app.py
 ```
 
-The UI will be available at http://localhost:8501
 
 ---
 
@@ -112,14 +110,16 @@ This is not a production-grade valuation system.
 
 Current limitations:
 - we only support the purchase of a real estate, rental is not supported
+- the safety level of each department are predefined by human rather than data-based
 - currently we only support the prediction for ile-de-france
 - the price predict models are simple and not fine-tuned
+- the address is only precise to department 
 - no evaluation of model accuracy
 - no anomaly detection
 - no monitoring or logging
 - no scaling strategy
-- the address is only precise to department 
-- the safety level prediction are not data-based
+
+
 
 ---
 
@@ -128,7 +128,8 @@ Current limitations:
 To move toward a real product, we would need:
 
 - extend the support area to whole France
-- add predict functions for rental 
+- add predict functions for rental based on the rental data
+- change the safety level to data-based
 - add other suggestions apart from the safety level
 - performance evaluation and validation
 - monitoring (latency, errors)
@@ -158,6 +159,7 @@ However, we would need support for:
 
 If this system were in production, updating the model would require:
 
+- keeping the data updated
 - keeping API compatibility (do not break input/output format)
 - versioning the model
 - testing before deployment
